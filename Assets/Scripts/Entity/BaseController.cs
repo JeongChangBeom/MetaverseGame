@@ -12,7 +12,7 @@ public class BaseController : MonoBehaviour
     [SerializeField] private SpriteRenderer chracterRenderer;
 
     protected Vector2 lookDirection = Vector2.zero;
-    public Vector2 LookDirection { get { return lookDirection; } }
+    public Vector2 LookDirection { get => lookDirection; }
 
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get => movementDirection; }
@@ -37,7 +37,7 @@ public class BaseController : MonoBehaviour
         Movement(movementDirection);
     }
 
-    //  입력받은 방향에 따라 플레이어를 이동시키는 함수
+    //  입력받은 방향에 따라 이동시키는 함수
     private void Movement(Vector2 direction)
     {
         direction *= statHandler.Speed;
@@ -54,9 +54,9 @@ public class BaseController : MonoBehaviour
             chracterRenderer.flipX = false;
         }
 
-        if(direction.magnitude > 0)
+        if (direction.magnitude > 0)
         {
-            lookDirection = direction;
+            lookDirection = direction / statHandler.Speed;
         }
     }
 }
