@@ -30,13 +30,13 @@ public class BaseInteractiveObjects : MonoBehaviour
 
     }
 
-    public void OnKey()
+    public virtual void OnKey()
     {
         isHit = true;
         offTime = 0.5f;
     }
 
-    public void OffKey()
+    public virtual void OffKey()
     {
         isHit = false;
     }
