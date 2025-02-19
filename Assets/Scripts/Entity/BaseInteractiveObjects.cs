@@ -36,7 +36,7 @@ public class BaseInteractiveObjects : MonoBehaviour
         offTime = 0.5f;
     }
 
-    public void OffKey()
+    public virtual void OffKey()
     {
         isHit = false;
     }

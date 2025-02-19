@@ -11,7 +11,7 @@ public class BaseController : MonoBehaviour
 
     [SerializeField] private SpriteRenderer chracterRenderer;
 
-    protected Vector2 lookDirection = Vector2.zero;
+    protected Vector2 lookDirection = Vector2.down;
     public Vector2 LookDirection { get => lookDirection; }
 
     protected Vector2 movementDirection = Vector2.zero;

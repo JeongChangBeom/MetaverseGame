@@ -4,29 +4,46 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform target;
-    Vector2 offset;
+    public Transform playerTransform;
+    public Vector3 cameraPosition;
+    public Vector2 center;
+    public Vector2 mapSize;
 
-    private void Start()
+    public float cameraMoveSpeed;
+    private float height;
+    private float width;
+
+    void Start()
     {
-        if(target == null)
-        {
-            return;
-        }
+        playerTransform = GameObject.Find("Player").GetComponent<Transform>();
 
-        offset = transform.position - target.position;
+        height = Camera.main.orthographicSize;
+        width = height * Screen.width / Screen.height;
     }
 
-    private void Update()
+    void FixedUpdate()
     {
-        if(target == null)
-        {
-            return;
-        }
+        LimitCameraArea();
+    }
 
-        Vector3 pos = transform.position;
-        pos.x = target.position.x + offset.x;
-        pos.y = target.position.y + offset.y;
-        transform.position = pos;
+    void LimitCameraArea()
+    {
+        transform.position = Vector3.Lerp(transform.position,
+                                          playerTransform.position + cameraPosition,
+                                          Time.deltaTime * cameraMoveSpeed);
+
+        float lx = mapSize.x - width;
+        float clampX = Mathf.Clamp(transform.position.x, -lx + center.x, lx + center.x);
+
+        float ly = mapSize.y - height;
+        float clampY = Mathf.Clamp(transform.position.y, -ly + center.y, ly + center.y);
+
+        transform.position = new Vector3(clampX, clampY, -10f);
+
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(center, mapSize * 2);
     }
 }
