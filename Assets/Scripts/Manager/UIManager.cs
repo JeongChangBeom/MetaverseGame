@@ -8,7 +8,7 @@ public enum UIState
     Game,
     GameBox,
     Leaderboard,
-    Comstom,
+    Custom,
 }
 
 public class UIManager : MonoBehaviour
@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     GameBoxUI gameBoxUI;
     LeaderboardUI leaderboardUI;
     GameUI gameUI;
-    CostomUI costomUI;
+    CustomUI customUI;
 
     private UIState currentState;
 
@@ -31,9 +31,8 @@ public class UIManager : MonoBehaviour
         leaderboardUI = GetComponentInChildren<LeaderboardUI>(true);
         leaderboardUI.Init(this);
 
-        costomUI = GetComponentInChildren<CostomUI>(true);
-        costomUI.Init(this);
-
+        customUI = GetComponentInChildren<CustomUI>(true);
+        customUI.Init(this);
 
         ChangeState(UIState.Game);
     }
@@ -44,7 +43,7 @@ public class UIManager : MonoBehaviour
         gameUI.SetActive(currentState);
         gameBoxUI.SetActive(currentState);
         leaderboardUI.SetActive(currentState);
-        costomUI.SetActive(currentState);
+        customUI.SetActive(currentState);
 
         Debug.Log(currentState);
     }

@@ -15,7 +15,7 @@ public class GameUI : BaseUI
     
     public void OnClickComtomButton()
     {
-        uiManager.ChangeState(UIState.Comstom);
+        uiManager.ChangeState(UIState.Custom);
     }
 
     protected override UIState GetUIState()

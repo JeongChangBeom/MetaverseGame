@@ -17,13 +17,13 @@ public class BaseController : MonoBehaviour
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get => movementDirection; }
 
-    protected StatHandler statHandler;
+    protected PlayerInfo playerInfo;
     protected AnimationHandler animationHandler;
 
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        statHandler = GetComponent<StatHandler>();
+        playerInfo = PlayerInfo.instance;
         animationHandler = GetComponent<AnimationHandler>();
     }
 
@@ -40,7 +40,7 @@ public class BaseController : MonoBehaviour
     //  입력받은 방향에 따라 이동시키는 함수
     private void Movement(Vector2 direction)
     {
-        direction *= statHandler.Speed;
+        direction *= playerInfo.PlayerSpeed;
 
         rb.velocity = direction;
         animationHandler.Move(direction);
@@ -56,7 +56,7 @@ public class BaseController : MonoBehaviour
 
         if (direction.magnitude > 0)
         {
-            lookDirection = direction / statHandler.Speed;
+            lookDirection = direction / playerInfo.PlayerSpeed;
         }
     }
 }

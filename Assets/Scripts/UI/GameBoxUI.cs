@@ -21,11 +21,14 @@ public class GameBoxUI : BaseUI
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
-    public void OnClickStackButton()    {
+    public void OnClickStackButton()
+    {
+        PlayerInfo.instance.PlayerPosition = playerController.transform.position;
         SceneManager.LoadScene("StackScene");
     }
     public void OnClickAgentRunButton()
     {
+        PlayerInfo.instance.PlayerPosition = playerController.transform.position;
         SceneManager.LoadScene("AgentRunScene");
     }
 
