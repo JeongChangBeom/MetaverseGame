@@ -40,8 +40,8 @@ public class StackTheStack : MonoBehaviour
     int bestCombo = 0;
     public int BestCombo { get => bestCombo; }
 
-    private const string BestScoreKey = "BestScore";
-    private const string BestComboKey = "BsetCombo";
+    private const string StackBestScoreKey = "StackBestScoreKey";
+    private const string StackBestComboKey = "StackBestComboKey";
 
     private bool isGameOver = true;
 
@@ -53,8 +53,8 @@ public class StackTheStack : MonoBehaviour
             return;
         }
 
-        bestScore = PlayerPrefs.GetInt(BestScoreKey, 0);
-        bestCombo = PlayerPrefs.GetInt(BestComboKey, 0);
+        bestScore = PlayerPrefs.GetInt(StackBestScoreKey, 0);
+        bestCombo = PlayerPrefs.GetInt(StackBestComboKey, 0);
 
         prevColor = GetRandomColor();
         nextColor = GetRandomColor();
@@ -318,8 +318,8 @@ public class StackTheStack : MonoBehaviour
             bestScore = stackCount;
             bestCombo = maxCombo;
 
-            PlayerPrefs.SetInt(BestScoreKey, bestScore);
-            PlayerPrefs.SetInt(BestComboKey, bestCombo);
+            PlayerPrefs.SetInt(StackBestScoreKey, bestScore);
+            PlayerPrefs.SetInt(StackBestComboKey, bestCombo);
         }
     }
 

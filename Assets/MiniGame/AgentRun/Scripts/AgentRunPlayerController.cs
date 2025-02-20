@@ -31,13 +31,11 @@ public class AgentRunPlayerController : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 2)
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 1)
         {
-            Debug.Log("มกวม");
-            jumpCount++;
-
             rb.velocity = Vector2.zero;
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            jumpCount++;
         }
         else if (Input.GetKeyUp(KeyCode.Space) && rb.velocity.y > 0)
         {

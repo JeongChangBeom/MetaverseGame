@@ -39,7 +39,7 @@ public class AgentRunManager : MonoBehaviour
         restartButton.onClick.AddListener(OnClickRestartButton);
         exitButton.onClick.AddListener(OnClickExitButton);
 
-        agnetRunBestScore = PlayerPrefs.GetInt("AgentBestScoreKey", 0);
+        agnetRunBestScore = PlayerPrefs.GetInt("AgentRunBestScoreKey", 0);
     }
 
     private void Update()
@@ -59,7 +59,7 @@ public class AgentRunManager : MonoBehaviour
         {
             agnetRunBestScore = (int)currentScore;
 
-            PlayerPrefs.SetInt("AgentBestScoreKey", agnetRunBestScore);
+            PlayerPrefs.SetInt("AgentRunBestScoreKey", agnetRunBestScore);
 
         }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameBox : BaseInteractiveObjects
+public class Leaderboard : BaseInteractiveObjects
 {
     UIManager uiManager;
 
@@ -23,7 +23,7 @@ public class GameBox : BaseInteractiveObjects
     public override void Interactive()
     {
         base.Interactive();
-        uiManager.ChangeState(UIState.GameBox);
+        uiManager.ChangeState(UIState.Leaderboard);
     }
 
     public override void OffKey()
