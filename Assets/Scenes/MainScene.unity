@@ -19430,6 +19430,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chatText: {fileID: 1897659706}
   portrait: {fileID: 71093708}
+  portraitArr:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1770542679
 GameObject:
   m_ObjectHideFlags: 0

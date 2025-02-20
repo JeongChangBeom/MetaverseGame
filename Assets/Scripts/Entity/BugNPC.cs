@@ -26,9 +26,11 @@ public class BugNPC : BaseInteractiveObjects
 
         talkData = new string[]
         {
-            "사사사사삭.....",
-            "사사삭.....사사삭....사사사사삭.....",
-            "(평범한 벌레인 것 같다.)"
+            "사사사사삭.....:0",
+            "사사삭.....사사삭....사사사사삭.....:0",
+            "그만 말 걸어:0",
+            "????????????:1",
+            "(평범한 벌레는 아닌 것 같다.):1"
         };
 
         portrait = GetComponent<SpriteRenderer>();

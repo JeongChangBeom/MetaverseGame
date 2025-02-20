@@ -8,13 +8,23 @@ public class ChatUI : BaseUI
 {
     [SerializeField] private TextMeshProUGUI chatText;
     [SerializeField] private Image portrait;
+    [SerializeField] private Sprite[] portraitArr;
     private string[] talkData;
     private int currentIndex;
 
+    SpriteRenderer playerSR;
+
+
+    private void Start()
+    {
+        playerSR = GameObject.Find("Player/MainSprite").GetComponent<SpriteRenderer>();
+        portraitArr = new Sprite[10];
+        portraitArr[1] = playerSR.sprite;
+        currentIndex = 0;
+    }
     private void OnEnable()
     {
-        currentIndex = 0;
-        UpdateDialogue();
+        UpdateTalk();
     }
 
     private void Update()
@@ -30,7 +40,7 @@ public class ChatUI : BaseUI
         currentIndex++;
         if (currentIndex < talkData.Length)
         {
-            UpdateDialogue();
+            UpdateTalk();
         }
         else
         {
@@ -40,12 +50,23 @@ public class ChatUI : BaseUI
     public void GetData(string[] arr, Sprite sp)
     {
         talkData = arr;
-        portrait.sprite = sp;
+        portraitArr[0] = sp;
     }
 
-    void UpdateDialogue()
+    void UpdateTalk()
     {
-        chatText.text = talkData[currentIndex];
+        if (talkData[currentIndex].Split(':')[1] == "0")
+        {
+            portrait.sprite = portraitArr[0];
+            Debug.Log("¹ú·¹ ÃÊ»óÈ­");
+        }
+        else
+        {
+            portrait.sprite = portraitArr[1];
+
+        }
+
+        chatText.text = talkData[currentIndex].Split(':')[0];
     }
 
     protected override UIState GetUIState()
