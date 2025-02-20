@@ -52,4 +52,12 @@ public class PlayerInfo : MonoBehaviour
         get => playerItem;
         set => playerItem = value;
     }
+
+    //  플레이어가 타고 있는 탈 것
+    private Vehicle playerVehicle = Vehicle.Null;
+    public Vehicle PlayerVehicle
+    {
+        get => playerVehicle;
+        set => playerVehicle = value;
+    }
 }

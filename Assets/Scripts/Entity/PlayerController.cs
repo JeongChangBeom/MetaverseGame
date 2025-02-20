@@ -6,14 +6,20 @@ using static UnityEditorInternal.ReorderableList;
 
 public class PlayerController : BaseController
 {
+    SpriteRenderer playerSR;
+    SpriteRenderer vehicleSR;
+
     //  플레이어가 생성될 때 PlayerInfo에 저장되어 있는 플레이어 정보를 가져옴
     protected override void Start()
     {
         base.Start();
+        playerSR = GameObject.Find("Player/MainSprite").GetComponent<SpriteRenderer>();
+        vehicleSR = GameObject.Find("Player/Vehicle").GetComponent<SpriteRenderer>();
 
         transform.position = PlayerInfo.instance.PlayerPosition;
         EquipItem(PlayerInfo.instance.PlayerItem);
         ApplyColor(PlayerInfo.instance.PlayerColor);
+        RideVehicle(PlayerInfo.instance.PlayerVehicle);
     }
 
     protected override void FixedUpdate()
@@ -71,6 +77,33 @@ public class PlayerController : BaseController
         player.color = currentColor;
 
         PlayerInfo.instance.PlayerColor = currentColor;
+    }
+
+    //  플레이어가 탈것을 타는
+    public void RideVehicle(Vehicle currentVehicle)
+    {
+        switch (currentVehicle)
+        {
+            case Vehicle.Null:
+                playerInfo.PlayerSpeed = 10f;
+                playerSR.enabled = true;
+                vehicleSR.enabled = false;
+                break;
+            case Vehicle.RedCar:
+                playerInfo.PlayerSpeed = 15f;
+                playerSR.enabled = false;
+                vehicleSR.enabled = true;
+                vehicleSR.sprite = Resources.Load<Sprite>("RedCar");
+                break;
+            case Vehicle.BlueCar:
+                playerInfo.PlayerSpeed = 20f;
+                playerSR.enabled = false;
+                vehicleSR.enabled = true;
+                vehicleSR.sprite = Resources.Load<Sprite>("BlueCar");
+                break;
+            default:
+                break;
+        }
     }
 
     //  Unity의 Input Sytem을 활용하여 키입력을 받아 움직이는 방향을 정해주는 함수
