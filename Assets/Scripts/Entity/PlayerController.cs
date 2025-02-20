@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using static UnityEditorInternal.ReorderableList;
 
@@ -8,6 +9,7 @@ public class PlayerController : BaseController
 {
     SpriteRenderer playerSR;
     SpriteRenderer vehicleSR;
+    SpriteRenderer equipItem;
 
     //  플레이어가 생성될 때 PlayerInfo에 저장되어 있는 플레이어 정보를 가져옴
     protected override void Start()
@@ -15,6 +17,7 @@ public class PlayerController : BaseController
         base.Start();
         playerSR = GameObject.Find("Player/MainSprite").GetComponent<SpriteRenderer>();
         vehicleSR = GameObject.Find("Player/Vehicle").GetComponent<SpriteRenderer>();
+        equipItem = GameObject.Find("Player/Item").GetComponent<SpriteRenderer>();
 
         transform.position = PlayerInfo.instance.PlayerPosition;
         EquipItem(PlayerInfo.instance.PlayerItem);
@@ -26,6 +29,7 @@ public class PlayerController : BaseController
     {
         base.FixedUpdate();
 
+        FlipVehicle();
         RayInteractive();
     }
 
@@ -52,8 +56,6 @@ public class PlayerController : BaseController
     //  플레이어가 장비를 장착하는 함수
     public void EquipItem(Item currentItem)
     {
-        SpriteRenderer equipItem = GameObject.Find("Player/Item").GetComponent<SpriteRenderer>();
-
         switch (currentItem)
         {
             case Item.Sword:
@@ -87,22 +89,37 @@ public class PlayerController : BaseController
             case Vehicle.Null:
                 playerInfo.PlayerSpeed = 10f;
                 playerSR.enabled = true;
+                equipItem.enabled = true;
                 vehicleSR.enabled = false;
                 break;
             case Vehicle.RedCar:
                 playerInfo.PlayerSpeed = 15f;
                 playerSR.enabled = false;
+                equipItem.enabled = false;
                 vehicleSR.enabled = true;
                 vehicleSR.sprite = Resources.Load<Sprite>("RedCar");
                 break;
             case Vehicle.BlueCar:
                 playerInfo.PlayerSpeed = 20f;
                 playerSR.enabled = false;
+                equipItem.enabled = false;
                 vehicleSR.enabled = true;
                 vehicleSR.sprite = Resources.Load<Sprite>("BlueCar");
                 break;
             default:
                 break;
+        }
+    }
+
+    void FlipVehicle()
+    {
+        if (movementDirection.x > 0 || lookDirection.x > 0)
+        {
+            vehicleSR.flipX = true;
+        }
+        else
+        {
+            vehicleSR.flipX = false;
         }
     }
 
