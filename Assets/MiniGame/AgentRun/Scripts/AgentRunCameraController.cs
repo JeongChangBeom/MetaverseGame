@@ -23,6 +23,7 @@ public class AgentRunCameraController : MonoBehaviour
             return;
         }
 
+        //  y값은 고정한 채로 x값만 따라가도록 함
         Vector3 pos = transform.position;
         pos.x = target.position.x + offsetX;
         transform.position = pos;

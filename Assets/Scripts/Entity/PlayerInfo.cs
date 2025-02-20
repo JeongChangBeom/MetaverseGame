@@ -18,6 +18,7 @@ public class PlayerInfo : MonoBehaviour
         DontDestroyOnLoad(instance);
     }
 
+    //  플레이어의 속도
     [Range(1f, 20f)][SerializeField] private float playerSpeed = 10f;
     public float PlayerSpeed
     {
@@ -25,6 +26,8 @@ public class PlayerInfo : MonoBehaviour
         set => playerSpeed = Mathf.Clamp(value, 0, 20);
     }
 
+
+    //  플레이어의 위치
     private Vector3 playerPosition = new Vector3(0, 0, 0);
     public Vector3 PlayerPosition
     {
@@ -32,6 +35,8 @@ public class PlayerInfo : MonoBehaviour
         set => playerPosition = value;
     }
 
+
+    //  플레이어의 색
     private Color playerColor = new Color(1f, 1f, 1f);
     public Color PlayerColor
     {
@@ -39,6 +44,8 @@ public class PlayerInfo : MonoBehaviour
         set => playerColor = value;
     }
 
+
+    //  플레이어가 장착 중인 아이템
     private Item playerItem = Item.Null;
     public Item PlayerItem
     {

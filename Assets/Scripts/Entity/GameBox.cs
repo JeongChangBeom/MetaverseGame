@@ -20,12 +20,14 @@ public class GameBox : BaseInteractiveObjects
         }
     }
 
+    //  게임박스에서 상호작용하면 게임박스의 UI가 활성화 됨
     public override void Interactive()
     {
         base.Interactive();
         uiManager.ChangeState(UIState.GameBox);
     }
 
+    //  게임박스에서 떨어지면 게임박스의 UI가 비활성화 되고 다시 게임 UI가 활성화 됨
     public override void OffKey()
     {
         base.OffKey();

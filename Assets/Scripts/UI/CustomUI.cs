@@ -51,12 +51,14 @@ public class CustomUI : BaseUI
         UpdateColor();
     }
 
+    //  UI가 비활성화 될 때 커스텀창에서 바꾼 내용을 플레이어에게 적용
     private void OnDisable()
     {
         playerController.EquipItem(currentItem);
         playerController.ApplyColor(currentColor);
     }
 
+    //  커스텀창에서 컬러 변경
     private void UpdateColor()
     {
         currentColor.r = redSlider.value / 255.0f;
@@ -66,7 +68,7 @@ public class CustomUI : BaseUI
         playerImage.color = currentColor;
     }
 
-
+    //  검 그림의 버튼을 클릭하면 검 장착
     public void OnClickSwordButton()
     {
         item.SetActive(true);
@@ -75,6 +77,8 @@ public class CustomUI : BaseUI
 
         PlayerInfo.instance.PlayerItem = Item.Sword;
     }
+
+    //  활 그림의 버튼을 클릭하면 활 장착
     public void OnClickBowButton()
     {
         item.SetActive(true);
@@ -83,6 +87,8 @@ public class CustomUI : BaseUI
 
         PlayerInfo.instance.PlayerItem = Item.Bow;
     }
+
+    //  망치 그림의 버튼을 클릭하면 망치 장착
     public void OnClickHammerButton()
     {
         item.SetActive(true);
@@ -92,6 +98,7 @@ public class CustomUI : BaseUI
         PlayerInfo.instance.PlayerItem = Item.Hammer;
     }
 
+    //  Save 버튼을 누르면 CustomUI가 비활성화되고 GameUI가 활성화 됨
     public void OnClickSaveButton()
     {
         uiManager.ChangeState(UIState.Game);

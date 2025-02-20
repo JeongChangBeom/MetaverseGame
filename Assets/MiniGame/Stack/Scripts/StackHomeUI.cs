@@ -23,11 +23,14 @@ public class StackHomeUI : StackBaseUI
         exitButton.onClick.AddListener(OnClickExitButton);
     }
 
+    //  Start 버튼을 누르면 게임시작
     void OnClickStartButton()
     {
         uiManager.OnClickStart();
     }
 
+
+    //  Exit 버튼을 누르면 다시 MainScene으로 돌아감
     void OnClickExitButton()
     {
         uiManager.OnClickExit();

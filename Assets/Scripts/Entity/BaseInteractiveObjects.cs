@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class BaseInteractiveObjects : MonoBehaviour
 {
+    //  key = 상호작용할 때 눌러야하는 키
     GameObject key;
+
     bool isHit = false;
     float offTime = 0f;
 
@@ -13,6 +15,7 @@ public class BaseInteractiveObjects : MonoBehaviour
         key = transform.GetChild(0).gameObject;
     }
 
+    //  충돌될 때 key를 보여주고, 충돌된지 offTime만큼 지나면 key를 안보여줌
     protected virtual void Update()
     {
         key.SetActive(isHit);
@@ -25,6 +28,7 @@ public class BaseInteractiveObjects : MonoBehaviour
         offTime -= Time.deltaTime;
     }
 
+    //  상호작용 가능한 객체와 상호작용 시 호출되는 함수
     public virtual void Interactive()
     {
 

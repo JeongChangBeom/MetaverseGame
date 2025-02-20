@@ -13,6 +13,7 @@ public abstract class BaseUI : MonoBehaviour
 
     protected abstract UIState GetUIState();
 
+    //  매개변수로 입력 받은 값을 통해 UI변경
     public void SetActive(UIState state)
     {
         this.gameObject.SetActive(GetUIState() == state);

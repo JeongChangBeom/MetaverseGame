@@ -44,6 +44,7 @@ public class AgentRunManager : MonoBehaviour
 
     private void Update()
     {
+        //  플레이어가 죽지 않았으면 계속해서 현재 점수 갱신
         if (!player.IsDead)
         {
             currentScore += Time.deltaTime;
@@ -52,6 +53,8 @@ public class AgentRunManager : MonoBehaviour
         UpdateScore(currentScore);
     }
 
+
+    //  플레이어가 죽으면 현재점수와 최고점수를 보여줌
     public void GameOver()
     {
 
@@ -65,6 +68,7 @@ public class AgentRunManager : MonoBehaviour
 
         Invoke("GameOverInvoke", 1.0f);
     }
+
     private void GameOverInvoke()
     {
         gameOverUI.SetActive(true);
@@ -72,16 +76,19 @@ public class AgentRunManager : MonoBehaviour
         currentRecordText.text = ((int)currentScore).ToString();
     }
 
+    //  게임 점수를 UI에 보여줌
     private void UpdateScore(float score)
     {
         scoreText.text = ((int)score).ToString();
     }
 
+    //  Restart 버튼을 누르면 게임 재시작
     public void OnClickRestartButton()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     
+    //  Exit 버튼을 누르면 다시 MainScene으로 돌아감
     public void OnClickExitButton()
     {
         SceneManager.LoadScene("MainScene");

@@ -25,6 +25,7 @@ public class StackGameUI : StackBaseUI
         maxComboText = transform.Find("MaxComboText").GetComponent<TextMeshProUGUI>();
     }
 
+    //  현재 점수, 현재 콤보, 최대 콤보를 UI에 보여줌
     public void SetUI(int score, int combo, int maxCombo)
     {
         scoreText.text = score.ToString();

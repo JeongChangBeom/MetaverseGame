@@ -8,6 +8,7 @@ public class AgentRunBgLooper : MonoBehaviour
     public int obstacleCount = 0;
     public Vector3 obstacleLastPosition = Vector3.zero;
 
+    //  게임이 시작될 때 장애물을 배치함
     void Start()
     {
         AgentRunObstacle[] obstacles = GameObject.FindObjectsOfType<AgentRunObstacle>();
@@ -22,6 +23,7 @@ public class AgentRunBgLooper : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //  지나간 배경을 재배치하여 게임이 지속될 수 있게 함
         if (collision.CompareTag("BackGround"))
         {
             float widthOfBgObject = ((BoxCollider2D)collision).size.x;
@@ -33,6 +35,7 @@ public class AgentRunBgLooper : MonoBehaviour
             return;
         }
 
+        //  지나간 장애물을 재배치하여 게임이 지속될 수 있게 함
         AgentRunObstacle obstacle = collision.GetComponent<AgentRunObstacle>();
 
         if (obstacle)

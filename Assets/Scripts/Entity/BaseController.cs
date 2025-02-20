@@ -11,13 +11,17 @@ public class BaseController : MonoBehaviour
 
     [SerializeField] private SpriteRenderer chracterRenderer;
 
+    //  플레이어가 바라보고 있는 방향
     protected Vector2 lookDirection = Vector2.down;
     public Vector2 LookDirection { get => lookDirection; }
 
+    //  플레이어의 진행 방향
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get => movementDirection; }
 
+    //  플레이어의 정보를 저장
     protected PlayerInfo playerInfo;
+
     protected AnimationHandler animationHandler;
 
     protected virtual void Awake()
@@ -37,7 +41,7 @@ public class BaseController : MonoBehaviour
         Movement(movementDirection);
     }
 
-    //  입력받은 방향에 따라 이동시키는 함수
+    //  입력받은 방향에 따라 플레이어를 이동시키는 함수
     private void Movement(Vector2 direction)
     {
         direction *= playerInfo.PlayerSpeed;

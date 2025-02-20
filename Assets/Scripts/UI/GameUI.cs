@@ -5,15 +5,16 @@ using UnityEngine.UI;
 
 public class GameUI : BaseUI
 {
-    [SerializeField] private Button comstomButton;
+    [SerializeField] private Button customButton;
 
     public override void Init(UIManager uiManager)
     {
         base.Init(uiManager);
-        comstomButton.onClick.AddListener(OnClickComtomButton);
+        customButton.onClick.AddListener(OnClickCustomButton);
     }
     
-    public void OnClickComtomButton()
+    //  Custom 버튼을 클릭하면 CustomUI가 활성화 됨
+    public void OnClickCustomButton()
     {
         uiManager.ChangeState(UIState.Custom);
     }

@@ -31,6 +31,7 @@ public class AgentRunPlayerController : MonoBehaviour
             return;
         }
 
+        //  스페이스 바를 누르면 점프 (2단 점프 가능)
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 1)
         {
             rb.velocity = Vector2.zero;
@@ -51,9 +52,11 @@ public class AgentRunPlayerController : MonoBehaviour
         {
             return;
         }
-
+        //  캐릭터가 계속해서 오른쪽으로 이동함
         transform.Translate(Vector3.right * speed * Time.deltaTime);
     }
+
+   
     private void Die()
     {
         rb.velocity = Vector2.zero;
@@ -62,12 +65,14 @@ public class AgentRunPlayerController : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        //  캐릭터가 발판을 밟으면 점프 횟수 초기화 (다시 점프가능)
         if (collision.contacts[0].normal.y > 0.7f)
         {
             isGrounded = true;
             jumpCount = 0;
         }
 
+        //  캐릭터가 장애물을 밟거나 떨어졌을 때 GameOver
         if (collision.gameObject.CompareTag("Dead"))
         {
             Die();

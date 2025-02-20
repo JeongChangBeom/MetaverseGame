@@ -35,6 +35,7 @@ public class StackScoreUI : StackBaseUI
         exitButton.onClick.AddListener(OnClickExitButton);
     }
 
+    //  현재 점수, 현재 콤보, 최고 점수, 최고 콤보를 UI에 보여줌
     public void SetUI(int score, int combo, int bestScore, int bestCombo)
     {
         scoreText.text = score.ToString();
@@ -43,11 +44,13 @@ public class StackScoreUI : StackBaseUI
         bestComboText.text = bestCombo.ToString();
     }
 
+    //  Restart 버튼을 누르면 게임을 다시 시작
     void OnClickStartButton()
     {
         uiManager.OnClickStart();
     }
 
+    //  Exit 버튼을 누르면 다시 MainScene으로 돌아감
     void OnClickExitButton()
     {
         uiManager.OnClickExit();

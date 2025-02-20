@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
+//  UI 목록
 public enum UIState
 {
     Game,
@@ -34,9 +35,11 @@ public class UIManager : MonoBehaviour
         customUI = GetComponentInChildren<CustomUI>(true);
         customUI.Init(this);
 
+        //  처음은 GameUI
         ChangeState(UIState.Game);
     }
 
+    //  매개변수로 입력받은 값의 UI를 활성화 시킴
     public void ChangeState(UIState state)
     {
         currentState = state;
@@ -44,7 +47,5 @@ public class UIManager : MonoBehaviour
         gameBoxUI.SetActive(currentState);
         leaderboardUI.SetActive(currentState);
         customUI.SetActive(currentState);
-
-        Debug.Log(currentState);
     }
 }

@@ -65,7 +65,6 @@ public class StackTheStack : MonoBehaviour
         Spawn_Block();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isGameOver)
@@ -73,6 +72,7 @@ public class StackTheStack : MonoBehaviour
             return;
         }
 
+        //  마우스를 눌렀을 때 블록을 내려 놓고, 내려 놓지 못하는 곳이면 GameOver
         if (Input.GetMouseButtonDown(0))
         {
             if (PlaceBlock())
@@ -94,6 +94,7 @@ public class StackTheStack : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, desiredPosition, StackMovingSpeed * Time.deltaTime); ;
     }
 
+    //  블록 생성
     bool Spawn_Block()
     {
         if (lastBlock != null)
@@ -142,6 +143,7 @@ public class StackTheStack : MonoBehaviour
         return new Color(r, g, b);
     }
 
+    //  랜덤으로 색상이 정해진 후 이전 색상과 맞춰서 조금씩 색상 변화, 배경색도 유사한 색으로 함께 변경
     void ColorChange(GameObject go)
     {
         Color applyColor = Color.Lerp(prevColor, nextColor, (stackCount % 11) / 10f);
@@ -164,6 +166,7 @@ public class StackTheStack : MonoBehaviour
         }
     }
 
+    //  블록이 X축과 Z축으로 번갈아가며 움직임
     void MoveBlock()
     {
         blockTransition += Time.deltaTime * BlockMovingSpeed;
@@ -180,6 +183,7 @@ public class StackTheStack : MonoBehaviour
         }
     }
 
+    //  블록을 놓을 수 있는 곳인지 계산
     bool PlaceBlock()
     {
         Vector3 lastPosition = lastBlock.localPosition;
@@ -277,6 +281,7 @@ public class StackTheStack : MonoBehaviour
         return true;
     }
 
+    //  블럭을 놓았을 때 오차범위만큼 잘리고 남은 파편 생성
     void CreateRubble(Vector3 pos, Vector3 scale)
     {
         GameObject go = Instantiate(lastBlock.gameObject);
@@ -290,6 +295,7 @@ public class StackTheStack : MonoBehaviour
         go.name = "Rubble";
     }
 
+    //  콤보 갱신
     void ComboCheck()
     {
         comboCount++;
@@ -301,7 +307,6 @@ public class StackTheStack : MonoBehaviour
 
         if ((comboCount % 5) == 0)
         {
-            Debug.Log("5 Combo Success!");
             stackBounds += new Vector3(0.5f, 0.5f);
             stackBounds.x =
                 (stackBounds.x > BoundSize) ? BoundSize : stackBounds.x;
@@ -310,11 +315,11 @@ public class StackTheStack : MonoBehaviour
         }
     }
 
+    //  최고 점수 갱신
     void UpdateScore()
     {
         if (bestScore < stackCount)
         {
-            Debug.Log("최고 점수 갱신");
             bestScore = stackCount;
             bestCombo = maxCombo;
 
@@ -323,6 +328,7 @@ public class StackTheStack : MonoBehaviour
         }
     }
 
+    //  GameOver 시 블록이 터지는 이펙트 구현
     void GameOverEffect()
     {
         int childCount = this.transform.childCount;
@@ -349,6 +355,7 @@ public class StackTheStack : MonoBehaviour
         }
     }
 
+    //  게임을 재시작하기 위해 모든 값들을 초기화
     public void Restart()
     {
         int childcount = transform.childCount;

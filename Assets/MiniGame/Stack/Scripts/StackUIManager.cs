@@ -44,6 +44,7 @@ public class StackUIManager : MonoBehaviour
         ChangeState(StackUIState.Home);
     }
 
+    //  매개변수로 입력받은 값의 UI로 전환
     public void ChangeState(StackUIState state)
     {
         currentState = state;
@@ -52,22 +53,26 @@ public class StackUIManager : MonoBehaviour
         scoreUI?.SetActive(currentState);
     }
 
+    //  게임 시작
     public void OnClickStart()
     {
         theStack.Restart();
         ChangeState(StackUIState.Game);
     }
 
+    //  MainScene으로 복귀
     public void OnClickExit()
     {
         SceneManager.LoadScene("MainScene");
     }
 
+    //  GameUI의 현재 점수, 현재 콤보, 최고 콤보를 갱신해줌
     public void UpdateScore()
     {
         gameUI.SetUI(theStack.Score, theStack.combo, theStack.MaxCombo);
     }
 
+    //  ScoreUI의 현재 점수, 현재 최고 콤보, 최고 점수, 최고 콤보를 갱신해줌)
     public void SetScoreUI()
     {
         scoreUI.SetUI(theStack.Score, theStack.MaxCombo, theStack.BestScore, theStack.BestCombo);
