@@ -20,10 +20,10 @@ public class ChatUI : BaseUI
         playerSR = GameObject.Find("Player/MainSprite").GetComponent<SpriteRenderer>();
         portraitArr = new Sprite[10];
         portraitArr[1] = playerSR.sprite;
-        currentIndex = 0;
     }
     private void OnEnable()
     {
+        currentIndex = 0;
         UpdateTalk();
     }
 
@@ -58,7 +58,6 @@ public class ChatUI : BaseUI
         if (talkData[currentIndex].Split(':')[1] == "0")
         {
             portrait.sprite = portraitArr[0];
-            Debug.Log("¹ú·¹ ÃÊ»óÈ­");
         }
         else
         {
