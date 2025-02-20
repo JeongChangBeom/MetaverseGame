@@ -10,12 +10,12 @@ public class PlayerInfo : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(instance);
         }
         else if (instance != this)
         {
             Destroy(this.gameObject);
         }
-        DontDestroyOnLoad(instance);
     }
 
     //  플레이어의 속도

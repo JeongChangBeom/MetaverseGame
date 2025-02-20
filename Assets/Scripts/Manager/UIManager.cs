@@ -10,6 +10,7 @@ public enum UIState
     GameBox,
     Leaderboard,
     Custom,
+    Chat,
 }
 
 public class UIManager : MonoBehaviour
@@ -18,6 +19,7 @@ public class UIManager : MonoBehaviour
     LeaderboardUI leaderboardUI;
     GameUI gameUI;
     CustomUI customUI;
+    ChatUI chatUI;
 
     private UIState currentState;
 
@@ -35,6 +37,9 @@ public class UIManager : MonoBehaviour
         customUI = GetComponentInChildren<CustomUI>(true);
         customUI.Init(this);
 
+        chatUI = GetComponentInChildren<ChatUI>(true);
+        chatUI.Init(this);
+
         //  Ã³À½Àº GameUI
         ChangeState(UIState.Game);
     }
@@ -43,9 +48,11 @@ public class UIManager : MonoBehaviour
     public void ChangeState(UIState state)
     {
         currentState = state;
+
         gameUI.SetActive(currentState);
         gameBoxUI.SetActive(currentState);
         leaderboardUI.SetActive(currentState);
         customUI.SetActive(currentState);
+        chatUI.SetActive(currentState);
     }
 }

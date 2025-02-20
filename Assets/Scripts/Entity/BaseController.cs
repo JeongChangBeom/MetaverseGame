@@ -27,8 +27,12 @@ public class BaseController : MonoBehaviour
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerInfo = PlayerInfo.instance;
         animationHandler = GetComponent<AnimationHandler>();
+    }
+
+    protected virtual void Start()
+    {
+        playerInfo = PlayerInfo.instance;
     }
 
     protected virtual void Update()

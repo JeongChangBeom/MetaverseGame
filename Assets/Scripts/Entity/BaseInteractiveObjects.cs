@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Schema;
 using UnityEngine;
 
 public class BaseInteractiveObjects : MonoBehaviour
 {
     //  key = 상호작용할 때 눌러야하는 키
-    GameObject key;
+    private GameObject key;
 
-    bool isHit = false;
-    float offTime = 0f;
+    private bool isHit = false;
+    private float offTime = 0f;
 
     protected virtual void Awake()
     {

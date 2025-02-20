@@ -7,8 +7,10 @@ using static UnityEditorInternal.ReorderableList;
 public class PlayerController : BaseController
 {
     //  플레이어가 생성될 때 PlayerInfo에 저장되어 있는 플레이어 정보를 가져옴
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         transform.position = PlayerInfo.instance.PlayerPosition;
         EquipItem(PlayerInfo.instance.PlayerItem);
         ApplyColor(PlayerInfo.instance.PlayerColor);
